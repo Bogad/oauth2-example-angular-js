@@ -1,0 +1,26 @@
+debug: true
+server:
+  port: 8080
+spring:
+  aop:
+    proxy-target-class: true
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:9999/uaa/oauth/token
+      userAuthorizationUri: http://localhost:9999/uaa/oauth/authorize
+      clientId: acme
+      clientSecret: acmesecret
+    resource:
+      token-info-uri: http://localhost:9999/uaa/oauth/check_token
+zuul:
+  routes:
+    resource:
+      path: /resource/**
+      url: http://localhost:9000/resource
+    user:
+      path: /user/**
+      url: http://localhost:9999/uaa/user
+logging:
+  level:
+    org.springframework.security: DEBUG

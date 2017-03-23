@@ -1,0 +1,12 @@
+<h1>Greeting</h1>
+<div ng-show="authenticated && selectedRole !=null">
+	<p>The ID is {{controller.greeting.id}}</p>
+	<p>The content is {{controller.greeting.content}}</p>
+	<p>
+		<a href="" ng-click="controller.fetchCall()">Try accessing user
+			resource</a>
+	</p>
+</div>
+<div ng-show="!authenticated">
+	<p>Login to see your greeting</p>
+</div>

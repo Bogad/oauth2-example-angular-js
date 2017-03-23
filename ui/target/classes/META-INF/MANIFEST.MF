@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: OAuth2 UI
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Abouaaggad
+Implementation-Vendor-Id: org.test
+Build-Jdk: 1.8.0_121
+Implementation-URL: http://projects.spring.io/spring-boot/oauth2-ui/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
