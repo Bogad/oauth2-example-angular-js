@@ -93,22 +93,5 @@ function($rootScope, $http, $location, $route) {
 	$http.get('resource/').then(function(response) {
 		self.greeting = response.data;
 	})
-	self.fetchCall = function() {
-		alert("ok");
-		$http.get('resource/actionconsulter', {
-	      transformRequest: angular.identity,
-	      transformResponse: angular.identity,
-	      headers: {
-	        'Content-Type': undefined
-	      }}).then(function(response) {
-	    	  alert(response.data);
-			self.call = response.data;
-		}, function (msg) {
-	        alert('Error in getting info: ' + msg.status);
-	        if(msg.status=='401'){
-	        	 var url = "http://" + $window.location.host + "/login";
-	             $window.location.href = url;
-	        }
-	    });
-	}
+
 });

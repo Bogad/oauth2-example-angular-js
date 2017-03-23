@@ -81,42 +81,6 @@ public class ResourceApplication {
 		return "Hello from Call";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/actionconsulter")
-	public String actionConsulter() {
-
-		System.out.println("############ Enter itarones rest");
-		SecurityContext context = SecurityContextHolder.getContext();
-		Authentication authentication = context.getAuthentication();
-		String userName = (String) (authentication.getPrincipal());
-
-		IActionSecurise action = new GenericActionImpl(IActionSecurisees.ITAR_SECURITY_ACTION_CONSULTER_UC);
-		action.setId(Long.valueOf(IActionSecurisees.ITAR_SECURITY_ACTION_CONSULTER_UC));
-
-		ActionVO actionVO = new ActionVO();
-		actionVO.setId(Long.valueOf(IActionSecurisees.ITAR_SECURITY_ACTION_CONSULTER_UC));
-
-		// TODO Alae Injection de dependances FAIL
-		ServicesFactory.setServices(services);
-
-		// TODO Alae Injection de dependances FAIL
-		omniFacade.init();
-
-		IResult resultat = omniFacade.invokeService(null, action, actionVO, null);
-
-		// TODO Alae la facade doit levée une "AccessDeniedException" pour
-		// etre bien gérée au niveau de l'appel REST
-		if (resultat.hasMessages()) {
-			IMessageItem message = (IMessageItem) resultat.getMessagesItem().get(0);
-			if (message instanceof ErrorMessageItem) {
-				if (message.getCodeMessage().startsWith("Habilitations : Accès non autorisé")) {
-					throw new AccessDeniedException(message.getCodeMessage());
-				}
-			}
-		}
-
-		return ((ActionVO) resultat.getObject()).getActionDescription();
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(ResourceApplication.class, args);
 	}
